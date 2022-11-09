@@ -45,6 +45,15 @@
     background-color: #ffffff;
     padding: 10px 30px 40px;
   }
+  .text-card {
+    border-radius: 10px;
+    text-decoration: none;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
+    width: 515px;
+    height: 260px;
+    background-color: #ffffff;
+    padding: 10px 30px 40px;
+  }
 
   .card h3 {
     font-size: 22px;
@@ -78,18 +87,19 @@
 
   .btn {
     text-decoration: none;
-    background-color: #005af0;
-    color: #ffffff;
+    background-color: white;
+    color: black;
     padding: 10px 20px;
     border: none;
     outline: none;
     transition: 0.3s;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
   }
 
   .btn:hover{
     text-decoration: none;
-    background-color: #ffffff;
-    color: #005af0;
+    background-color: black;
+    color: white;
     padding: 10px 20px;
     border: none;
     outline: 1px solid #010101;
@@ -104,9 +114,6 @@
     border-radius: 4px;
   }
 
-  section{
-    background-color: #005af0;
-  }
 
 </style>
 
@@ -128,6 +135,12 @@
     </form>
 
 </header>
+<section style="background-color:#b40f54;height:300px">
+    <div style="margin:auto;width:50%;color:white;">
+        <h3>LINE ONLINE CLASSES</h3>
+        <h5>Live classes Online provides engaging instructor led content for people everywhere and of all ages.</h5>
+    </div>
+</section>
 <section style="height: fit-content;">
     <div class="container">
         <div class="card">
@@ -162,12 +175,19 @@ let filedata = `
 <form action="" method="post">
 <div class="form">
 <h4>${fileName}</h4>
-<button class="btn">Upload</button>
+<button class="btn">Summarize</button>
 </div>
 </form>`;
 dropArea.innerHTML = filedata;
 });
 </script>
+</section>
+<section>
+    <div>
+        <textarea rows="15" cols="100" class="text-card"></textarea>
+        <span><textarea rows="15" cols="100" class="text-card"></textarea></span>
+    </div>
+    
 </section>
     
 
