@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>LISA</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+
+</head>
+<body>
+    <div class="container-fluid bg-success">LISA</div>
+    <form action="answer_question" method="post">
+        {% for message in get_flashed_messages() %}
+             <p>{{ message }}</p>
+         {% endfor %}
+        <br>
+        <textarea rows="20" cols="200" type="text" name="name_input"></textarea>
+        <br>
+        <input type="submit" value="submit" id="submit">
+        
+    </form>
+    <p class="text-danger">{{ output }}</p>
+</body>
+</html>
