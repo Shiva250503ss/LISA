@@ -28,8 +28,9 @@
   }
 
   .container {
-    height: 100vh;
-    width: 100%;
+    height: fit-content;
+    width: 50%;
+    margin: auto;
     align-items: center;
     display: flex;
     justify-content: center;
@@ -127,7 +128,7 @@
     </form>
 
 </header>
-<section class="home" style="width: 100%;height:500px;">
+<section style="height: fit-content;">
     <div class="container">
         <div class="card">
           <h3>Upload Files</h3>
@@ -167,8 +168,8 @@ let filedata = `
 dropArea.innerHTML = filedata;
 });
 </script>
-    
 </section>
+    
 
 </body>
 </html>
