@@ -17,6 +17,9 @@ from heapq import nlargest
 import docx
 from docx import Document
 
+summarized_text = ""
+text = ""
+
 app = Flask(__name__)
 app.secret_key = "manbearpig_MUDMAN888"
 
@@ -66,6 +69,8 @@ def summarize():
     summary = nlargest(select_len,sent_scores,key = sent_scores.get)
     final_sum = [word.text for word in summary]
     summary = ' '.join(final_sum)
+    global summarized_text 
+    summarized_text = summary
     print(summary)
     return render_template("live.html",output=summary)
 
@@ -75,6 +80,8 @@ def word2text(file_path):
     data=""
     for p in doc_reader.paragraphs:
         data+=p.text+"\n"
+    global text 
+    text = data
     return data
 
 def answer_questions(question,answer_text):
@@ -103,16 +110,17 @@ def answer_questions(question,answer_text):
             answer += ' ' + tokens[i]
     print('Answer: '+ answer + "")
     return answer
-
+    
 @app.route("/answer_question",methods=['GET','POST'])
 def answer_question():
 
-    input = str(request.form['name_input'])
-    bert_abstract = "Social engineering is the process of convincing an authorized individual to provide confidential information or access to an unauthorized individual.  It is a technique in which the attacker uses various deceptive practices to convince the targeted person to divulge information they normally would not divulge or to convince the target of the attack to do something they normally wouldn’t do. Social engineering is very successful for two general reasons. The first is the basic desire of most people to be helpful. When somebody asks a question for which we know the answer, our normal response is not to be suspicious but rather to answer the question."
+    input = str(request.form.get('question'))
+    abstract = text
 
-    answer = answer_questions(input,bert_abstract)
+    answer = answer_questions(input,abstract)
     print(answer)
-    return answer
+    return render_template('live.html',answer=answer)
+
 
 #speech=get_data(r"D:\REC\Word to text\sample.docx")
 @app.route("/live", methods=['GET','POST'])
