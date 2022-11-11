@@ -20,10 +20,16 @@ from docx import Document
 app = Flask(__name__)
 app.secret_key = "manbearpig_MUDMAN888"
 
+picFolder = os.path.join('static','pics')
+
+app.config['UPLOAD_FOLDER'] = picFolder
+
 @app.route("/")
 def index():
+    pic1 = os.path.join(app.config['UPLOAD_FOLDER'],'LISA2.0\glasses website\static\banner-1.jpg')
+    pic2 = os.path.join(app.config['UPLOAD_FOLDER'],'banner-2.jpg')
     flash("whats your name?")
-    return render_template("index.html")
+    return render_template("index.html",user_image = pic1, user_image2 = pic2)
 
 @app.route("/summarize",methods=['POST','GET'])
 def summarize():
