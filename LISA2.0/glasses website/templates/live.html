@@ -1102,11 +1102,14 @@ section {
     </form>
 
 </header>
-<section style="background-color:#b40f54;height:300px">
-    <div style="margin:auto;width:50%;color:white;">
-        <h3>LINE ONLINE CLASSES</h3>
-        <h5>Live classes Online provides engaging instructor led content for people everywhere and of all ages.</h5>
-    </div>
+<section class="home" style="background-color:rgb(167, 75, 75);">
+
+  <div class="slide active" >
+      <div class="content" style="width:500px;background-color:white;height:200px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+          <span style="font-size:x-large;text-align: center;margin-top: 50px;font-family:'Times New Roman', Times, serif;">"Educataion is not the learning of facts,but the training of the mind to think. "</span>
+          <span style="font-size:x-large;text-align: right;font-family:'Times New Roman', Times, serif;">-Albert Einstein </span>
+      </div>
+  </div>
 </section>
 <section style="height: fit-content;">
     <div class="container">
@@ -1158,17 +1161,17 @@ dropArea.innerHTML = filedata;
 </section>
 <section>
     <div>
-      <h3>summary:</h3>
+      <h1>summary:</h1>
         <textarea rows="15" cols="100" class="text-card1">
           {{output}}
         </textarea>
-        <h3>Ask your query</h3>
+        <h1>Ask your query:</h1>
         <span>
           <form action="answer_question" method="post">
             <input type="text" name="question" class="input-card1">
             <button class="btn">SOLVE</button>
           </form>
-          <h3>Solution</h3>
+          <h1>Solution:</h1>
           
           <textarea rows="15" cols="100" class="text-card2">{{answer}}</textarea> 
 
