@@ -1185,23 +1185,23 @@ dropArea.innerHTML = filedata;
       <h1>summary:</h1>
         <textarea rows="15" cols="100" class="text-card1">
           {{output}}
-        </textarea>
+        </textarea><br>
         <h1>Ask your query:</h1>
         <span>
           <form action="answer_question" method="post">
             <input type="text" name="question" class="input-card1">
             <button class="btn" onclick="">SOLVE</button>
-          </form>
+          </form><br>
           <h1>Solution:</h1>
           
-          <textarea rows="15" cols="100" class="text-card2">{{answer}}</textarea> 
+          <textarea rows="15" cols="100" class="text-card2">{{answer}}</textarea> <br>
 
           <h1>Test Yourself:</h1>
           <form action="quesion_generator" method="post">
             <input type="text" name="question" class="input-card1">
             <button class="btn" onclick="">GENERATE QUESTIONS</button>
           </form>
-          <textarea rows="15" cols="100" class="text-card3">{{queston}}</textarea> 
+          <textarea rows="15" cols="100" class="text-card3">{{queston}}</textarea> <br>
 
           <h1>For your reference:</h1>
           <form action="generate" method="post">
