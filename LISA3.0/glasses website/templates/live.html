@@ -1011,6 +1011,24 @@ section {
     background-color: #ffffff;
     padding: 10px 30px 40px;
   }
+  .text-card3 {
+    border-radius: 10px;
+    text-decoration: none;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 300px;
+    background-color: #ffffff;
+    padding: 10px 30px 40px;
+  }
+  .text-card4 {
+    border-radius: 10px;
+    text-decoration: none;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 300px;
+    background-color: #ffffff;
+    padding: 10px 30px 40px;
+  }
 
   .input-card1 {
     border-radius: 10px;
@@ -1090,7 +1108,7 @@ section {
 <!-- header section starts  -->
 
 <header class="header">
-    <a href="home.html" class="logo"> L . I . S . A </a>
+    <a class="logo"> L . I . S . A </a>
     <nav class="navba_n1">
         <!--<a><button class="btn btn-light" type="button">HOME</button></a>-->
         <form action="home" method="post">
@@ -1177,6 +1195,22 @@ dropArea.innerHTML = filedata;
           <h1>Solution:</h1>
           
           <textarea rows="15" cols="100" class="text-card2">{{answer}}</textarea> 
+
+          <h1>Test Yourself:</h1>
+          <form action="quesion_generator" method="post">
+            <input type="text" name="question" class="input-card1">
+            <button class="btn" onclick="">GENERATE QUESTIONS</button>
+          </form>
+          <textarea rows="15" cols="100" class="text-card3">{{queston}}</textarea> 
+
+          <h1>For your reference:</h1>
+          <form action="generate" method="post">
+            <input type="text" name="question" class="input-card1">
+            <button class="btn" onclick="">GENERATE QUESTIONS</button>
+          </form>
+          <textarea rows="15" cols="100" class="text-card4">{{query}}</textarea>
+          <textarea rows="15" cols="100" class="text-card4">{{solution}}</textarea>  
+
 
         </span>
 

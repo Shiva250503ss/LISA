@@ -9,6 +9,16 @@ model=BertForQuestionAnswering.from_pretrained('bert-large-uncased-whole-word-ma
 from transformers import BertTokenizer
 tokenizer = BertTokenizer.from_pretrained('bert-large-uncased-whole-word-masking-finetuned-squad')
 
+from transformers import AutoModelWithLMHead, AutoTokenizer
+from torch import tensor,argmax
+from transformers import BertTokenizer
+from transformers import BertForQuestionAnswering
+
+tokenizer_q = AutoTokenizer.from_pretrained("mrm8488/t5-base-finetuned-question-generation-ap")
+model_q = AutoModelWithLMHead.from_pretrained("mrm8488/t5-base-finetuned-question-generation-ap")
+model_a = BertForQuestionAnswering.from_pretrained('bert-large-uncased-whole-word-masking-finetuned-squad')
+tokenizer_a = BertTokenizer.from_pretrained('bert-large-uncased-whole-word-masking-finetuned-squad')
+
 import os
 import spacy
 from spacy.lang.en.stop_words import STOP_WORDS
@@ -113,6 +123,19 @@ def answer_questions(question,answer_text):
             answer += ' ' + tokens[i]
     print('Answer: '+ answer + "")
     return answer
+
+def get_questions(context, max_length=64):
+    qns=[]
+    sentences=context.split('.')
+    for sentence in sentences[:-1]:
+        input_text = "answer: %s  context: %s </s>" % ('', sentence)
+        features = tokenizer_q([input_text], return_tensors='pt')
+
+        output = model_q.generate(input_ids=features['input_ids'], 
+                   attention_mask=features['attention_mask'],
+                   max_length=max_length)
+        qns.append(tokenizer_q.decode(output[0]).replace('<pad> question: ','').replace('</s>',''))
+    return qns
     
 @app.route("/answer_question",methods=['GET','POST'])
 def answer_question():
@@ -123,6 +146,31 @@ def answer_question():
     answer = answer_questions(input,abstract)
     print(answer)
     return render_template('live.html',answer=answer)
+
+@app.route("/question_generator",methods=['GET','POST'])
+def question_generator():
+    context_q = input("Enter the Context to Generate Questions : \n\n\t")
+    print("\nGenerated Questions ",end='\n\n')
+    question_q=list(set(get_questions(context_q)))
+    for i,qn in enumerate(question_q,start=1):
+        print(str(i)+') '+qn)
+    return render_template('live.html',question=qn)
+
+@app.route("/generate",methods=['GET','POST'])
+def generate():
+    context_q_a = input("Enter the Context to Generate Questions and Answers : \n\n\t")
+    print("\nGenerated Question and Answers",end='\n\n')
+    question_q_a=list(set(get_questions(context_q_a)))
+    answer_q_a=[]
+    for qn in question_q_a:
+        answer_q_a.append(answer_question(qn,context_q_a))
+    for i in range(len(question_q_a)):
+        print('Qn.'+str(i+1)+'  '+question_q_a[i],sep='\n')
+        print('Ans : '+answer_q_a[i],sep='\n',end='\n\n')
+    return render_template('live.html',query=question_q_a,solution=answer_q_a)
+
+
+
 
 
 #speech=get_data(r"D:\REC\Word to text\sample.docx")
