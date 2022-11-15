@@ -72,7 +72,7 @@ def summarize():
     global summarized_text 
     summarized_text = summary
     print(summary)
-    #answer
+    #answer 
     input = str(request.form.get('question'))
     abstract = text
 
