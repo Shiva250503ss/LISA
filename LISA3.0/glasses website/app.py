@@ -73,10 +73,7 @@ def summarize():
     summarized_text = summary
     print(summary)
     #answer 
-    input = str(request.form.get('question'))
-    abstract = text
-
-    answer = answer_questions(input,abstract)
+    
 
     return render_template("live.html",output=summary)
 
@@ -120,7 +117,10 @@ def answer_questions(question,answer_text):
 @app.route("/answer_question",methods=['GET','POST'])
 def answer_question():
 
-    
+    input = str(request.form.get('question'))
+    abstract = text
+
+    answer = answer_questions(input,abstract)
     print(answer)
     return render_template('live.html',answer=answer)
 
@@ -129,6 +129,10 @@ def answer_question():
 @app.route("/live", methods=['GET','POST'])
 def live():
     return render_template("live.html")
+
+@app.route("/home",methods=['GET','POST'])
+def home():
+    return render_template("index.html")
 
 if __name__ == '__main__':
  
