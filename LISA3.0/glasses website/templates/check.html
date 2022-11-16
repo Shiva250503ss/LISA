@@ -1,19 +1,31 @@
 <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Voting App</title>
+    </head>
+    <body>
+        Votes: <span id="count">{{ votes }}</span>
+        <br><br>
+        <button id="up">UP</button>
+        <br>
+        <button id="down">DOWN</button>
+    </body>
 
-<html>
-<head>
-	<title>For loop in Flask</title>
-</head>
-<body>
-
-<ol>
-<!-- For loop logic of jinja template -->
-{%for i in range(0, len)%}
-
-	<li>{{Pokemons[i]}}</li>
-{%endfor%}
-
-</ol>
-
-</body>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('button').forEach(button => {
+                button.onclick = () => {
+                    const request = new XMLHttpRequest();
+                    request.open('POST', `/${button.id}`);
+                    request.onload = () => {
+                        const response = request.responseText;
+                        document.getElementById('count').innerHTML = response;
+                    }; 
+                    request.send();
+                };
+            });
+        });
+    </script>
 </html>

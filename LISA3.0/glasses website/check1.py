@@ -1,24 +1,25 @@
-# importing modules
 from flask import Flask, render_template
 
-# declaring app name
 app = Flask(__name__)
 
-# making list of pokemons
-Pokemons =["Pikachu", "Charizard", "Squirtle", "Jigglypuff",
-		"Bulbasaur", "Gengar", "Charmander", "Mew", "Lugia", "Gyarados"]
+votes = 0
 
-# defining home page
-@app.route('/')
-def homepage():
+@app.route("/")
+def index():
+    return render_template("check.html", votes=votes)
 
-# returning index.html and list
-# and length of list to html page
-	return render_template("check.html", len = len(Pokemons), Pokemons = Pokemons)
+@app.route("/up", methods=["POST"])
+def upvote():
+    global votes
+    votes = votes + 1
+    return str(votes)
 
+@app.route("/down", methods=["POST"])
+def downvote():
+    global votes
+    if votes >= 1:
+        votes = votes - 1
+    return str(votes)
 
-if __name__ == '__main__':
- 
-    # run() method of Flask class runs the application
-    # on the local development server.
-    app.run(use_reloader = True,  debug=True)
+if __name__ == "__main__":
+    app.run()
