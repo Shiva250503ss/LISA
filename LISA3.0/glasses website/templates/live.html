@@ -1197,19 +1197,34 @@ dropArea.innerHTML = filedata;
           <textarea rows="15" cols="100" class="text-card2">{{answer}}</textarea> <br>
 
           <h1>Test Yourself:</h1>
-          <form action="quesion_generator" method="post">
+          <form action="question_generator" method="post">
             <input type="text" name="question">
             <button class="btn" onclick="">GENERATE QUESTIONS</button>
           </form>
-          <textarea rows="15" cols="100" class="text-card3">{{queston}}</textarea> <br>
+          <div class="text-card4">
+            <ol>
+              {%for i in query%}
+              <li>{{i}}</li>  
+              {%endfor%}
+            </ol>  
+            
+          </div>
 
           <h1>For your reference:</h1>
           <form action="generate" method="post">
             <input type="text" name="question">
-            <button class="btn" onclick="">GENERATE QUESTIONS</button>
+            <button class="btn" onclick="">SHOW ANSWERS</button>
           </form>
-          <textarea rows="15" cols="100" class="text-card4">{{query}}</textarea>
-          <textarea rows="15" cols="100" class="text-card4">{{solution}}</textarea>  
+          <div class="text-card4">
+            <ol>
+              {%for i in solution%}
+              <li>{{i}}</li>  
+              {%endfor%}
+            </ol>  
+            
+          </div>
+            
+         <!-- <textarea rows="15" cols="100" class="text-card4">{{solution}}</textarea>-->  
 
 
         </span>

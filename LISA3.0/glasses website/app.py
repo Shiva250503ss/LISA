@@ -1,6 +1,6 @@
 from flask import Flask,render_template,request,flash
 import textwrap
-
+import jinja2
 import torch
 
 from transformers import BertForQuestionAnswering
@@ -149,12 +149,17 @@ def answer_question():
 
 @app.route("/question_generator",methods=['GET','POST'])
 def question_generator():
-    context_q = input("Enter the Context to Generate Questions : \n\n\t")
-    print("\nGenerated Questions ",end='\n\n')
-    question_q=list(set(get_questions(context_q)))
-    for i,qn in enumerate(question_q,start=1):
-        print(str(i)+') '+qn)
-    return render_template('live.html',question=qn)
+    context_q_a = text
+    print("\nGenerated Question and Answers",end='\n\n')
+    question_q_a=list(set(get_questions(context_q_a)))
+    answer_q_a=[]
+    for qn in question_q_a:
+        answer_q_a.append(answer_questions(qn,context_q_a))
+    for i in range(len(question_q_a)):
+        print('Qn.'+str(i+1)+'  '+question_q_a[i],sep='\n')
+        print('Ans : '+answer_q_a[i],sep='\n',end='\n\n')
+    length = len(answer_q_a)
+    return render_template('live.html', query = question_q_a)
 
 @app.route("/generate",methods=['GET','POST'])
 def generate():
@@ -167,7 +172,8 @@ def generate():
     for i in range(len(question_q_a)):
         print('Qn.'+str(i+1)+'  '+question_q_a[i],sep='\n')
         print('Ans : '+answer_q_a[i],sep='\n',end='\n\n')
-    return render_template('live.html',query=question_q_a,solution=answer_q_a)
+    length = len(answer_q_a)
+    return render_template('live.html',solution=answer_q_a)
 
 
 
@@ -186,5 +192,5 @@ if __name__ == '__main__':
  
     # run() method of Flask class runs the application
     # on the local development server.
-    app.run(debug=True)
+    app.run(use_reloader = True,  debug=True)
 
