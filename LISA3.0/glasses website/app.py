@@ -145,7 +145,7 @@ def answer_question():
 
     answer = answer_questions(input,abstract)
     print(answer)
-    return render_template('live.html',answer=answer)
+    return render_template('live.html',answer=answer,question=input)
 
 @app.route("/question_generator",methods=['GET','POST'])
 def question_generator():
