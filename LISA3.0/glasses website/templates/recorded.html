@@ -16,10 +16,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
     <script src="script.js" defer></script>
-    <form action="video" method="post">
-      <input type="text" name="question" class="input-card1" value="{{question}}">
-      <button class="btn" onclick="">SOLVE</button>
-    </form><br>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap");
 * {
@@ -1013,10 +1009,20 @@ section {
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/ly36kn0ug4k" name="video" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen/>
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/NpFNH_8nEvI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
+            <form action="video" method="post">
+              <input type="text" name="question" class="input-card1" value="{{question}}">
+              <button class="btn" onclick="">summarize</button>
+            </form><br>
+        </div></div>
+            <div>
+              <h1>summary:</h1>
+                <textarea rows="15" cols="100" class="text-card1">
+                  {{video}}
+                </textarea><br>
+            </div>
             
             
-        </div>
-    </div> 
+
 </section>
 </body>
 </html>

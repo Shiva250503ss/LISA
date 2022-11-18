@@ -36,7 +36,7 @@ vid_id = youtube_vid.split("=")[1]
 
 vid_id
 
-from Ipython.display import YouTubeVideo
+from IPython.display import YouTubeVideo
 YouTubeVideo(vid_id)
 
 YouTubeTranscriptApi.get_transcript(vid_id)
@@ -66,10 +66,9 @@ app.config['UPLOAD_FOLDER'] = picFolder
 
 @app.route("/")
 def index():
-    pic1 = os.path.join(app.config['UPLOAD_FOLDER'],'LISA2.0\glasses website\static\banner-1.jpg')
-    pic2 = os.path.join(app.config['UPLOAD_FOLDER'],'banner-2.jpg')
-    flash("whats your name?")
-    return render_template("index.html",user_image = pic1, user_image2 = pic2)
+    return render_template("index.html")
+
+    
 
 @app.route("/summarize",methods=['POST','GET'])
 def summarize():
@@ -225,6 +224,10 @@ def video():
 @app.route("/live", methods=['GET','POST'])
 def live():
     return render_template("live.html")
+
+@app.route("/REC",methods = ['GET','POST'] )
+def REC():
+    return render_template("recorded.html")
 
 @app.route("/home",methods=['GET','POST'])
 def home():
