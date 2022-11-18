@@ -30,6 +30,7 @@
 html {
   font-size: 62.5%;
   overflow-x: hidden;
+
 }
 
 section {
@@ -78,16 +79,14 @@ section {
   margin-top: 1rem;
   padding: .8rem 2.8rem;
   font-size: 1.7rem;
-  color: #333;
-  border: 0.2rem solid #333;
+  color: rgb(255, 255, 255);
   background: none;
   cursor: pointer;
   border-radius: .5rem;
 }
 
 .btn:hover {
-  background: #333;
-  color: #fff;
+  border:0.05px solid white;
 }
 
 .header {
@@ -97,7 +96,7 @@ section {
   left: 0;
   right: 0;
   z-index: 1000;
-  background: #fff;
+  background: rgb(24, 24, 24);
   -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
           box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
   display: -webkit-box;
@@ -112,7 +111,7 @@ section {
 
 .header .logo {
   font-size: 2.5rem;
-  color: #333;
+  color: rgb(215, 215, 215);
   font-weight: bolder;
   margin-right: auto;
 }
@@ -232,6 +231,9 @@ section {
 .home {
   padding: 0;
   position: relative;
+  background-image: url('background.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 200%;
 }
 
 .home .slide {
@@ -256,11 +258,13 @@ section {
 }
 
 .home .slide .content span {
-  color: #333;
+  color: rgb(231, 231, 231);
   display: block;
   font-size: 2rem;
-  -webkit-animation: fadeIn .4s linear .2s backwards;
-          animation: fadeIn .4s linear .2s backwards;
+}
+
+.home .slide .content:hover {
+  border: 2px solid white;
 }
 
 .home .slide .content h3 {
@@ -993,10 +997,10 @@ section {
 
 <!-- home section starts      -->
 
-<section class="home" style="background-color:rgb(146, 186, 205);">
+<section class="home">
 
     <div class="slide active" >
-        <div class="content" style="width:500px;background-color:white;height:200px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <div class="content" style="width:500px;height:200px;">
             <span style="font-size:x-large;text-align: center;margin-top: 50px;font-family:'Times New Roman', Times, serif;">"Every student can learn, just not on the same day, or in the same way."</span>
         </div>
     </div>
