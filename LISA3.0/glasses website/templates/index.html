@@ -311,6 +311,7 @@ section {
 .banner {
   display: -ms-grid;
   display: grid;
+  background-color: rgb(26, 24, 24);  
   -ms-grid-columns: (minmax(31rem, 1fr))[auto-fit];
       grid-template-columns: repeat(auto-fit, minmax(31rem, 1fr));
   gap: 1.5rem;
@@ -1012,7 +1013,7 @@ section {
 
  <section class="banner">
 
-    <div class="box">
+    <div class="box" style="width:50%; margin:auto">
         <!--<img src="LISA2.0\glasses website\images\banner-1.jpg" alt=""> -->
         <img src="{{url_for('static', filename='banner-1.jpg')}}" />
         <div class="content" style="text-align:center;">
@@ -1023,8 +1024,8 @@ section {
         </div>
     </div>
 
-    <div class="box">
-        <!--<img src="LISA2.0\glasses website\images\banner-2.jpg" alt=""> -->
+    <!--<div class="box">
+        <img src="LISA2.0\glasses website\images\banner-2.jpg" alt="">
         <img src = "{{url_for('static', filename='banner-2.jpg')}}">
         <div class="content" style="text-align:center ;">
             <h3>click here for <br>recorded classes</h3>
@@ -1032,7 +1033,7 @@ section {
               <button type="submit" class="btn">REC</button>
             </form>
         </div>
-    </div>
+    </div>-->
 
     <!--<div class="box">
         <img src="images/banner-3.jpg" alt="">
