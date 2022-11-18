@@ -999,19 +999,24 @@ section {
     <div class="container" id="content" style="height:500px;border:0.2px solid grey;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
         <div class="w3-row">
             <div class="w3-col w3-container" style="width:150px">
-                <a href="https://www.youtube.com/embed/ly36kn0ug4k" target="video"><button type="button" class="btn btn-light" style="border:none;">English</button></a>
+                <a href="https://www.youtube.com/embed/ly36kn0ug4k" target="video" onclick="video('https://www.youtube.com/embed/ly36kn0ug4k')" ><button type="button" class="btn btn-light" style="border:none;" value="https://www.youtube.com/embed/ly36kn0ug4k" type="button">English</button></a>
                 <br>
-                <a href="https://www.youtube.com/watch?v=oV74Najm6Nc" target="video"><button type="button" class="btn btn-light" style="border:none;">Science</button></a>
+                <a href="https://www.youtube.com/embed/NpFNH_8nEvI" target="video"><button type="button" class="btn btn-light" style="border:none;">Science</button></a>
                 <br>
                 <a href="https://meet.google.com/czq-mzet-ezf" target="video"><button type="button" class="btn btn-light" style="border:none;">Maths</button></a>
-            </div>
+                <script>
+                  function video(vid){
+                      document.getElementById('summarize').value = vid;
+                  }
+                </script>        
+              </div>
             <div class="w3-rest w3-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/ly36kn0ug4k" name="video" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen/>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/NpFNH_8nEvI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/ly36kn0ug4k" name="video" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/NpFNH_8nEvI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
             </div>
-            <form action="video" method="post">
+            <form action="video_summary" method="post">
               <input type="text" name="question" class="input-card1" value="{{question}}">
-              <button class="btn" onclick="">summarize</button>
+              <button class="btn" id="summarize" value="0" name="summarize">summarize</button>
             </form><br>
         </div></div>
             <div>
