@@ -231,7 +231,7 @@ section {
 .home {
   padding: 0;
   position: relative;
-  /*background-image: "{{url_for('static', filename='banner-1.jpg')}}";*/
+  /*background-image: url({{url_for('static',filename='banner-1.jpg')}})*/
   background-repeat: no-repeat;
   background-size: 100% 200%;
 }
@@ -1001,8 +1001,7 @@ section {
 <!-- home section starts      -->
 
 <section class="home">
-  <img src="{{url_for('static', filename='background.jpg')}}" />
-
+  
     <div class="slide active" >
         <div class="content" style="width:500px;height:200px;">
             <span style="font-size:x-large;text-align: center;margin-top: 50px;font-family:'Times New Roman', Times, serif;">"Every student can learn, just not on the same day, or in the same way."</span>
@@ -1017,7 +1016,7 @@ section {
  <section class="banner">
 
     <div class="box" style="width:50%; margin:auto">
-        <!--<img src="LISA2.0\glasses website\images\banner-1.jpg" alt=""> -->
+      <img src = "{{url_for('static', filename='banner-1.jpg')}}">
         <div class="content" style="text-align:center;">
             <h3>click here for <br>live classes</h3>
             <form action="/live" method="post">
