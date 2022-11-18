@@ -207,6 +207,7 @@ def question_generator():
 @app.route("/video_summary",methods=['GET','POST'])
 def video():
     num_iters=int(len(result)/1000)
+    global summarized_text
     summarized_text=[]
     for i in range(0,num_iters+1):
         start=0
@@ -218,6 +219,58 @@ def video():
         summarized_text.append(out)
     print(summarized_text)
     return render_template("recorded.html",video=summarized_text)
+
+@app.route("/summarize",methods=['POST','GET'])
+def summarize():
+    if request.method == "POST":
+        result = request.files['file_input']
+        result.save(result.filename)
+    text = word2text(result.filename)
+    stopwords = list(STOP_WORDS)
+    nlp = spacy.load('en_core_web_sm')
+    doc = nlp(text)
+    print(text)
+    word_freq = {}
+    for word in doc:
+        if word.text.lower() not in stopwords:
+            if word.text.lower() not in word_freq.keys():
+                if word.text not in word_freq.keys():
+                    word_freq[word.text]= 1
+                else:
+                    word_freq[word.text] += 1
+    print(word_freq.values())
+    max_freq = max(word_freq.values())
+    for word in word_freq.keys():
+        word_freq[word] = word_freq[word]/max_freq
+    sentence_tok = [sent for sent in doc.sents]
+    sent_scores = {}
+    for sent in sentence_tok:
+        for word in sent:
+            if word.text.lower() in word_freq.keys():
+                if sent not in sent_scores.keys():
+                    sent_scores[sent] = word_freq[word.text.lower()]
+                else:
+                    sent_scores[sent] += word_freq[word.text.lower()]
+    select_len = int(len(sentence_tok) * 0.3)
+    global summary
+    summary = nlargest(select_len,sent_scores,key = sent_scores.get)
+    final_sum = [word.text for word in summary]
+    summary = ' '.join(final_sum)
+    global summarized_text 
+    summarized_text = summary
+    print(summary)
+
+
+@app.route("/answer_question",methods=['GET','POST'])
+def answer_question():
+    global input
+    input = str(request.form.get('question'))
+    abstract = text
+    global answer
+    answer = answer_questions(input,abstract)
+    print(answer)
+    return render_template('recorded.html',output=summary,answer=answer,question=input)
+
 
 
 #speech=get_data(r"D:\REC\Word to text\sample.docx")
