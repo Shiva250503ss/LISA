@@ -1183,9 +1183,9 @@ dropArea.innerHTML = filedata;
 <section>
     <div>
       <h1>summary:</h1>
-        <textarea rows="15" cols="100" class="text-card1">
+        <div class="text-card1">
           {{output}}
-        </textarea><br>
+        </div><br>
         <h1>Ask your query:</h1>
         <span>
           <form action="answer_question" method="post">
@@ -1194,7 +1194,7 @@ dropArea.innerHTML = filedata;
           </form><br>
           <h1>Solution:</h1>
           
-          <textarea rows="15" cols="100" class="text-card2">{{answer}}</textarea> <br>
+          <div class="text-card2">{{answer}}</div> <br>
 
           <h1>Test Yourself:</h1>
           <form action="question_generator" method="post">
