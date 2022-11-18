@@ -27,6 +27,30 @@ from heapq import nlargest
 import docx
 from docx import Document
 
+from transformers import pipeline
+from youtube_transcript_api import YouTubeTranscriptApi
+
+youtube_vid ="https://www.youtube.com/watch?v=08qwI9RX8-M&list=PLyqSpQzTE6M9LibNqhhCYLDvfVGhcRDN4&index=3"
+
+vid_id = youtube_vid.split("=")[1]
+
+vid_id
+
+from Ipython.display import YouTubeVideo
+YouTubeVideo(vid_id)
+
+YouTubeTranscriptApi.get_transcript(vid_id)
+transcript=YouTubeTranscriptApi.get_transcript(vid_id)
+
+transcript[0:5]
+
+result=""
+for i in transcript:
+  result+=' '+i['text']
+print(len(result))
+
+summarizer=pipeline('summarization')
+
 summarized_text = ""
 text = ""
 answer=""
@@ -181,6 +205,20 @@ def question_generator():
 
 
 
+@app.route("/video_summary",methods=['GET','POST'])
+def video():
+    num_iters=int(len(result)/1000)
+    summarized_text=[]
+    for i in range(0,num_iters+1):
+        start=0
+        start=i*1000
+        end=(i+1)*1000
+        out=summarizer(result[start:end])
+        out=out[0]
+        out=out['summary_text']
+        summarized_text.append(out)
+    print(summarized_text)
+    return render_template("recorded.html",video=summarized_text)
 
 
 #speech=get_data(r"D:\REC\Word to text\sample.docx")
