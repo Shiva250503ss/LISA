@@ -165,19 +165,19 @@ def question_generator():
     length = len(answer_q_a)
     return render_template('live.html',question=input,output=summary, query = question_q_a,answer=answer)
 
-@app.route("/generate",methods=['GET','POST'])
-def generate():
-    context_q_a = text
-    print("\nGenerated Question and Answers",end='\n\n')
-    question_q_a=list(set(get_questions(context_q_a)))
-    answer_q_a=[]
-    for qn in question_q_a:
-        answer_q_a.append(answer_questions(qn,context_q_a))
-    for i in range(len(question_q_a)):
-        print('Qn.'+str(i+1)+'  '+question_q_a[i],sep='\n')
-        print('Ans : '+answer_q_a[i],sep='\n',end='\n\n')
-    length = len(answer_q_a)
-    return render_template('live.html',question=input,output=summary,solution=answer_q_a,query = question_q_a,answer=answer)
+#@app.route("/generate",methods=['GET','POST'])
+#def generate():
+    #context_q_a = text
+    #print("\nGenerated Question and Answers",end='\n\n')
+    #question_q_a=list(set(get_questions(context_q_a)))
+    #answer_q_a=[]
+    #for qn in question_q_a:
+        #answer_q_a.append(answer_questions(qn,context_q_a))
+    #for i in range(len(question_q_a)):
+        #print('Qn.'+str(i+1)+'  '+question_q_a[i],sep='\n')
+        #print('Ans : '+answer_q_a[i],sep='\n',end='\n\n')
+    #length = len(answer_q_a)
+    #return render_template('live.html',question=input,output=summary,solution=answer_q_a,query = question_q_a,answer=answer)
 
 
 
