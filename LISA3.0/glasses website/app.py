@@ -29,6 +29,9 @@ from docx import Document
 
 summarized_text = ""
 text = ""
+answer=""
+input=""
+summary=""
 
 app = Flask(__name__)
 app.secret_key = "manbearpig_MUDMAN888"
@@ -76,6 +79,7 @@ def summarize():
                 else:
                     sent_scores[sent] += word_freq[word.text.lower()]
     select_len = int(len(sentence_tok) * 0.3)
+    global summary
     summary = nlargest(select_len,sent_scores,key = sent_scores.get)
     final_sum = [word.text for word in summary]
     summary = ' '.join(final_sum)
@@ -139,13 +143,13 @@ def get_questions(context, max_length=64):
     
 @app.route("/answer_question",methods=['GET','POST'])
 def answer_question():
-
+    global input
     input = str(request.form.get('question'))
     abstract = text
-
+    global answer
     answer = answer_questions(input,abstract)
     print(answer)
-    return render_template('live.html',answer=answer)
+    return render_template('live.html',output=summary,answer=answer,question=input)
 
 @app.route("/question_generator",methods=['GET','POST'])
 def question_generator():
@@ -159,7 +163,7 @@ def question_generator():
         print('Qn.'+str(i+1)+'  '+question_q_a[i],sep='\n')
         print('Ans : '+answer_q_a[i],sep='\n',end='\n\n')
     length = len(answer_q_a)
-    return render_template('live.html', query = question_q_a)
+    return render_template('live.html',question=input,output=summary, query = question_q_a,answer=answer)
 
 @app.route("/generate",methods=['GET','POST'])
 def generate():
@@ -173,7 +177,7 @@ def generate():
         print('Qn.'+str(i+1)+'  '+question_q_a[i],sep='\n')
         print('Ans : '+answer_q_a[i],sep='\n',end='\n\n')
     length = len(answer_q_a)
-    return render_template('live.html',solution=answer_q_a)
+    return render_template('live.html',question=input,output=summary,solution=answer_q_a,query = question_q_a,answer=answer)
 
 
 
