@@ -77,16 +77,14 @@ section {
   margin-top: 1rem;
   padding: .8rem 2.8rem;
   font-size: 1.7rem;
-  color: #333;
-  border: 0.2rem solid #333;
+  color: rgb(255, 255, 255);  
   background: none;
   cursor: pointer;
   border-radius: .5rem;
 }
 
 .btn:hover {
-  background: #333;
-  color: #fff;
+  border:0.05px solid white;
 }
 
 .header {
@@ -96,7 +94,7 @@ section {
   left: 0;
   right: 0;
   z-index: 1000;
-  background: #fff;
+  background: rgb(24, 24, 24);
   -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
           box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
   display: -webkit-box;
@@ -106,11 +104,12 @@ section {
       -ms-flex-align: center;
           align-items: center;
   padding: 0 9%;
+  
 }
 
 .header .logo {
   font-size: 2.5rem;
-  color: #333;
+  color: rgb(215, 215, 215);
   font-weight: bolder;
   margin-right: auto;
 }
@@ -1070,7 +1069,7 @@ section {
     color: #a3a3a3;
   }
 
-  .btn {
+  /*.btn {
     text-decoration: none;
     background-color: white;
     color: black;
@@ -1088,7 +1087,7 @@ section {
     padding: 10px 20px;
     border: none;
     outline: 1px solid #010101;
-  }
+  }*/
   .form input {
     margin: 10px 0;
     width: 100%;
@@ -1108,19 +1107,23 @@ section {
 <!-- header section starts  -->
 
 <header class="header">
-    <a class="logo"> L . I . S . A </a>
-    <nav class="navba_n1">
-        <!--<a><button class="btn btn-light" type="button">HOME</button></a>-->
-        <form action="home" method="post">
-          <button type="submit" class="btn">HOME</button>
-        </form>
-        <!--<a><button class="btn btn-light" type="button">CONTACT</button></a>-->
-    </nav>
-
-    <form action="" class="search-form">
+  <a class="logo"> L . I . S . A </a>
+  <nav class="navba n1">
+      <!--<a><button class="btn btn-light" type="button">HOME</button></a>-->
+      <form action="" class="search-form">
         <input type="search" name="" placeholder="search here..." id="search-box">
         <label for="search-box" class="fas fa-search"></label>
     </form>
+    <form action="home" method="post">
+      <button type="submit" class="btn">HOME</button>
+    </form>
+      <!--<a><button class="btn btn-light" type="button">CONTACT</button></a>-->
+  </nav>
+
+  <form action="" class="search-form">
+      <input type="search" name="" placeholder="search here..." id="search-box">
+      <label for="search-box" class="fas fa-search"></label>
+  </form>
 
 </header>
 <section class="home" style="background-color:rgb(167, 75, 75);">
