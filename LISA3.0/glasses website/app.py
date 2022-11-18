@@ -206,16 +206,6 @@ def question_generator():
 
 @app.route("/video_summary",methods=['GET','POST'])
 def video():
-    youtube_vid = request.form.get("summarize")
-    #vid_id = youtube_vid.split("=")[1]
-    YouTubeTranscriptApi.get_transcript(youtube_vid)
-    transcript=YouTubeTranscriptApi.get_transcript(youtube_vid)
-
-    transcript[0:5]
-
-    result=""
-    for i in transcript:
-        result+=' '+i['text']
     num_iters=int(len(result)/1000)
     summarized_text=[]
     for i in range(0,num_iters+1):
