@@ -231,7 +231,7 @@ section {
 .home {
   padding: 0;
   position: relative;
-  /*background-image: url({{url_for('static',filename='banner-1.jpg')}})*/
+  background:url("{{url_for('static',filename='background.jpg')}}");
   background-repeat: no-repeat;
   background-size: 100% 200%;
 }
@@ -729,17 +729,6 @@ section {
   color: #e84393;
 }
 
-.login-form form input[type="submit"],
-.register-form form input[type="submit"] {
-  background: #333;
-  color: #fff;
-}
-
-.login-form form input[type="submit"]:hover,
-.register-form form input[type="submit"]:hover {
-  background: #e84393;
-}
-
 .login-form form .btn,
 .register-form form .btn {
   width: 100%;
@@ -1003,6 +992,7 @@ section {
 <section class="home">
   
     <div class="slide active" >
+      
         <div class="content" style="width:500px;height:200px;">
             <span style="font-size:x-large;text-align: center;margin-top: 50px;font-family:'Times New Roman', Times, serif;">"Every student can learn, just not on the same day, or in the same way."</span>
         </div>
