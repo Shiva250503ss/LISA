@@ -229,6 +229,9 @@ section {
 .home {
   padding: 0;
   position: relative;
+  background:url("{{url_for('static',filename='livebg.jpg')}}");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 .home .slide {
@@ -1126,12 +1129,12 @@ section {
   </form>
 
 </header>
-<section class="home" style="background-color:rgb(12, 12, 12);">
+<section class="home">
 
   <div class="slide active" >
-      <div class="content" style="width:50%; margin:auto;">
-          <span style="font-size:x-large;text-align: center;margin-top: 50px;font-family:'Times New Roman', Times, serif;">"Education is not the learning of facts,but the training of the mind to think. "</span>
-          <span style="font-size:x-large;text-align: right;font-family:'Times New Roman', Times, serif;">-Albert Einstein </span>
+      <div class="content" style="width:30%; position: absolute; right: 150px; height: 60%; border:2px solid rgb(16, 199, 202)">
+          <span style="font-size:x-large;text-align: center;margin-top: 100px;font-family:'Times New Roman', Times, serif;color: white;">"Education is not the learning of facts,but the training of the mind to think. "</span>
+          <span style="font-size:x-large;text-align: right;font-family:'Times New Roman', Times, serif;color: white;">-Albert Einstein </span>
       </div>
   </div>
 </section>
