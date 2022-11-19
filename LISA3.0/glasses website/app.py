@@ -118,7 +118,7 @@ def answer_questions(question,answer_text):
     tokens = tokenizer.convert_ids_to_tokens(input_ids)
     answer = tokens[answer_start]
     for i in range(answer_start + 1, answer_end + 1):
-        if tokens[i][0:20] == ' ' :
+        if tokens[i][0:20] == '##' :
             answer += ' ' + tokens[i]
         else:
             answer += ' ' + tokens[i]
