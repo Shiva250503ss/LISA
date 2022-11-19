@@ -77,14 +77,16 @@ section {
   margin-top: 1rem;
   padding: .8rem 2.8rem;
   font-size: 1.7rem;
-  color: rgb(255, 255, 255);  
+  color: rgb(0, 0, 0);  
   background: none;
   cursor: pointer;
   border-radius: .5rem;
+  border: 2px solid black;
 }
 
 .btn:hover {
-  border:0.05px solid white;
+  background-color: black;
+  color: white;
 }
 
 .header {
@@ -1099,8 +1101,17 @@ section {
     outline: none;
     padding: 12px 20px;
     border-radius: 4px;
-  }
 
+  
+  }
+  .unselectable {
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        color: #000000;
+      }
 
 </style>
 
@@ -1118,7 +1129,7 @@ section {
         <label for="search-box" class="fas fa-search"></label>
     </form>
     <form action="home" method="post">
-      <button type="submit" class="btn">HOME</button>
+      <button type="submit" class="btn" style="color: white;border: none;">HOME</button>
     </form>
       <!--<a><button class="btn btn-light" type="button">CONTACT</button></a>-->
   </nav>
@@ -1132,7 +1143,7 @@ section {
 <section class="home">
 
   <div class="slide active" >
-      <div class="content" style="width:30%; position: absolute; right: 150px; height: 60%; border:2px solid rgb(16, 199, 202)">
+      <div class="content" style="width:30%; position: absolute; right: 150px; height: 60%; border:2px solid rgb(255, 37, 222)">
           <span style="font-size:x-large;text-align: center;margin-top: 100px;font-family:'Times New Roman', Times, serif;color: white;">"Education is not the learning of facts,but the training of the mind to think. "</span>
           <span style="font-size:x-large;text-align: right;font-family:'Times New Roman', Times, serif;color: white;">-Albert Einstein </span>
       </div>
@@ -1150,7 +1161,7 @@ section {
             <form action="/summarize" method="post" enctype="multipart/form-data">
               <input type="file" accept=".doc,.docx,.pdf" id="fileID" name="file_input">
               <!--<button class="btn" type="button">Choose File</button>-->
-              <button class="btn" type="submit">Summarize</button>
+              <button class="btn"  type="submit">Summarize</button>
             </form>
             
           </div>
@@ -1188,26 +1199,30 @@ dropArea.innerHTML = filedata;
 </section>
 <section>
     <div>
-      <h1>summary:</h1>
-        <div class="text-card1">
+      <h1 style="font-size: 25px;">summary:</h1>
+        <div class="text-card1 unselectable">
           {{output}}
-        </div><br>
-        <h1>Ask your query:</h1>
+        </div><br><br>
+    </div>
+</section>
+        <div style="height: 50px;width:100%;background-color:#000000"></div>
+  <section>     
+        <h1 style="font-size: 25px;">Ask your query:</h1>
         <span>
           <form action="answer_question" method="post">
             <input type="text" name="question" class="input-card1" value="{{question}}">
             <button class="btn" onclick="">SOLVE</button>
           </form><br>
-          <h1>Solution:</h1>
+          <h1 style="font-size: 25px;">Solution:</h1>
           
-          <div class="text-card2">{{answer}}</div> <br>
+          <div class="text-card2 unselectable">{{answer}}</div> <br>
 
-          <h1>Test Yourself:</h1>
+          <h1 style="font-size: 25px;">Test Yourself:</h1>
           <form action="question_generator" method="post">
             <input type="text" name="question">
             <button class="btn" onclick="">GENERATE QUESTIONS</button>
           </form>
-          <div class="text-card4">
+          <div class="text-card4 unselectable">
             <ol>
               {%for i in query%}
               <li>{{i}}</li>  
@@ -1216,19 +1231,6 @@ dropArea.innerHTML = filedata;
             
           </div>
 
-          <h1>For your reference:</h1>
-          <form action="generate" method="post">
-            <input type="text" name="question">
-            <button class="btn" onclick="">SHOW ANSWERS</button>
-          </form>
-          <div class="text-card4">
-            <ol>
-              {%for i in solution%}
-              <li>{{i}}</li>  
-              {%endfor%}
-            </ol>  
-            
-          </div>
             
          <!-- <textarea rows="15" cols="100" class="text-card4">{{solution}}</textarea>-->  
 
