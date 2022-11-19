@@ -1143,7 +1143,7 @@ section {
 <section class="home">
 
   <div class="slide active" >
-      <div class="content" style="width:30%; position: absolute; right: 150px; height: 60%; border:2px solid rgb(255, 37, 222)">
+      <div class="content" style="width:30%; position: absolute; right: 100px;top:50px; height: 60%;border-bottom:2px solid rgb(195, 41, 195) ;border-top:2px solid rgb(195, 41, 195) ;">
           <span style="font-size:x-large;text-align: center;margin-top: 100px;font-family:'Times New Roman', Times, serif;color: white;">"Education is not the learning of facts,but the training of the mind to think. "</span>
           <span style="font-size:x-large;text-align: right;font-family:'Times New Roman', Times, serif;color: white;">-Albert Einstein </span>
       </div>
@@ -1151,9 +1151,9 @@ section {
 </section>
 <section style="height: fit-content;">
     <div class="container">
-        <div class="card">
-          <h3>Upload Files</h3>
-          <div class="drop_box">
+        <div class="card"  style="background-color:#262626;">
+          <h3 style="color:white">Upload Files</h3>
+          <div class="drop_box"  style="background-color:#fffbfb;box-shadow: 0px 0px 2px 2px rgb(68, 56, 182);">
             <header>
               <h4>Select File here</h4>
             </header>
@@ -1206,17 +1206,19 @@ dropArea.innerHTML = filedata;
     </div>
 </section>
         <div style="height: 50px;width:100%;background-color:#000000"></div>
-  <section>     
-        <h1 style="font-size: 25px;">Ask your query:</h1>
+  <section style="background-color:rgb(24,24,24)">     
+        <h1 style="font-size: 25px; color: white;">Ask your query:</h1>
         <span>
           <form action="answer_question" method="post">
-            <input type="text" name="question" class="input-card1" value="{{question}}">
-            <button class="btn" onclick="">SOLVE</button>
+            <input type="text" name="question" class="input-card1"style="background-color:" value="{{question}}">
+            <button class="btn" style="color:white;border:1px solid white">SOLVE</button>
           </form><br>
-          <h1 style="font-size: 25px;">Solution:</h1>
+          <h1 style="font-size: 25px;color:white">Solution:</h1>
           
           <div class="text-card2 unselectable">{{answer}}</div> <br>
-
+        </section>
+          <div style="height: 50px;width:100%;background-color:#000000"></div>
+        <section>
           <h1 style="font-size: 25px;">Test Yourself:</h1>
           <form action="question_generator" method="post">
             <input type="text" name="question">
@@ -1230,6 +1232,7 @@ dropArea.innerHTML = filedata;
             </ol>  
             
           </div>
+        </section>
 
             
          <!-- <textarea rows="15" cols="100" class="text-card4">{{solution}}</textarea>-->  

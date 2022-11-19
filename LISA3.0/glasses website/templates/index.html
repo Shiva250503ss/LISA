@@ -311,7 +311,7 @@ section {
 .banner {
   display: -ms-grid;
   display: grid;
-  background-color: rgb(26, 24, 24);  
+  background-color: rgb(0,0,0);  
   -ms-grid-columns: (minmax(31rem, 1fr))[auto-fit];
       grid-template-columns: repeat(auto-fit, minmax(31rem, 1fr));
   gap: 1.5rem;
@@ -358,6 +358,12 @@ section {
 .banner .box .content .btn {
   padding: .6rem 2rem;
   font-size: 1.5rem;
+  border: 1px solid white;
+}
+
+.banner .box .content .btn:hover {
+  border: 2px solid white;
+  transition: 0.5s;
 }
 
 .products .box-container {
@@ -1008,9 +1014,9 @@ section {
     <div class="box" style="width:50%; margin:auto;">
       <img src = "{{url_for('static', filename='liveback1.jpg')}}">
         <div class="content" style="text-align:center;">
-            <h3 style="color: white;">click here for <br>live classes</h3>
+            <h3 style="color: white;">Let's Start Learning</h3>
             <form action="/live" method="post">
-                <button type="submit" class="btn">LIVE</button>
+                <button type="submit" class="btn">Start</button>
             </form>
         </div>
     </div>
