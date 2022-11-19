@@ -1125,7 +1125,38 @@ section {
   background:url("{{url_for('static',filename='query.jpg')}}");
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  width:100%;
 }
+
+.panda .slide {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 60vh;
+  padding: 2rem 7%;
+  background-size: cover !important;
+  background-position: center !important;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: none;
+}
+
+.panda .slide.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.panda .slide .content span {
+  color: #333;
+  display: block;
+  font-size: 2rem;
+  -webkit-animation: fadeIn .4s linear .2s backwards;
+          animation: fadeIn .4s linear .2s backwards;
+}
+
 
 
 </style>
@@ -1223,16 +1254,16 @@ dropArea.innerHTML = filedata;
         <!--<div style="height: 50px;width:100%;background-color:#fdfdfd"></div>-->
   <section style="background-color:rgb(255, 255, 255)">  
     <div class="panda" >
-        <h1 style="font-size: 25px; color: rgb(0, 0, 0);">Ask your query:</h1>
+        <h1 style="font-size: 25px; color: rgb(255, 255, 255);">Ask your query:</h1>
         <span>
           <form action="answer_question" method="post">
             <input type="text" name="question" class="shadowbox "style="background-color:" value="{{question}}">
             &thinsp;&thinsp;
             &thinsp;&thinsp;
             &thinsp;&thinsp;
-            <button class="btn" onclick="">SOLVE</button>
+            <button class="btn" onclick=""style="color: rgb(255, 255, 255); border:0.05px solid white;" >SOLVE</button>
           </form><br><br><br> 
-          <h1 style="font-size: 25px;color:rgb(0, 0, 0)">Solution:</h1><br>
+          <h1 style="font-size: 25px;color:rgb(255, 255, 255)">Solution:</h1><br>
           
           <div class="text-card2 unselectable"style=" font-size: 15px;">{{answer}}</div> <br>
           </span>
@@ -1245,7 +1276,7 @@ dropArea.innerHTML = filedata;
             <input type="text" name="question"style="width:45%;margin:auto">
             <button class="btn" onclick="" >GENERATE QUESTIONS</button><br><br>
           </form>
-          <div class="text-card4 unselectable"style=" font-size: 15px;">
+          <div class="text-card4 unselectable" style=" font-size: 15px;">
             <ol>
               {%for i in query%}
               <li>{{i}}</li>  
