@@ -9,13 +9,17 @@ model=BertForQuestionAnswering.from_pretrained('bert-large-uncased-whole-word-ma
 from transformers import BertTokenizer
 tokenizer = BertTokenizer.from_pretrained('bert-large-uncased-whole-word-masking-finetuned-squad')
 
-from transformers import AutoModelWithLMHead, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer
 from torch import tensor,argmax
 from transformers import BertTokenizer
 from transformers import BertForQuestionAnswering
+from transformers import T5ForConditionalGeneration, T5Tokenizer
 
-tokenizer_q = AutoTokenizer.from_pretrained("mrm8488/t5-base-finetuned-question-generation-ap")
-model_q = AutoModelWithLMHead.from_pretrained("mrm8488/t5-base-finetuned-question-generation-ap")
+model_name = "mrm8488/t5-base-finetuned-question-generation-ap"
+tokenizer_q = T5Tokenizer.from_pretrained(model_name)
+model_q = T5ForConditionalGeneration.from_pretrained(model_name)
+
+
 model_a = BertForQuestionAnswering.from_pretrained('bert-large-uncased-whole-word-masking-finetuned-squad')
 tokenizer_a = BertTokenizer.from_pretrained('bert-large-uncased-whole-word-masking-finetuned-squad')
 
