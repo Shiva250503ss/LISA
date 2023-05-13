@@ -1011,7 +1011,7 @@ section {
 
  <section class="banner">
 
-    <div class="box" style="width:50%; margin:auto;">
+    <div class="box" style="width:90%; margin:auto;">
       <img src = "{{url_for('static', filename='liveback1.jpg')}}">
         <div class="content" style="text-align:center;">
             <h3 style="color: white;">Let's Start Learning</h3>
@@ -1020,7 +1020,18 @@ section {
             </form>
         </div>
     </div>
+    <section class="banner">
 
+      <div class="box" style="width:90%; margin:auto;">
+        <img src = "{{url_for('static', filename='liveback1.jpg')}}">
+          <div class="content" style="text-align:center;">
+              <h3 style="color: white;">Start Recording</h3>
+              <form action="/record" method="post">
+                  <button type="submit" class="btn">record</button>
+              </form>
+          </div>
+      </div>
+  
     <!--<div class="box">
         <img src="LISA2.0\glasses website\images\banner-2.jpg" alt="">
         <img src = "{{url_for('static', filename='banner-2.jpg')}}">

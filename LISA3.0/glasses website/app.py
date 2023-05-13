@@ -2,6 +2,7 @@ from flask import Flask,render_template,request,flash
 import textwrap
 import jinja2
 import torch
+import speech_recognition as sr
 
 from transformers import BertForQuestionAnswering
 model=BertForQuestionAnswering.from_pretrained('bert-large-uncased-whole-word-masking-finetuned-squad')
@@ -181,7 +182,40 @@ def generate():
     return render_template('live.html',question=input,output=summary,solution=answer_q_a,query = question_q_a,answer=answer)
 
 
+@app.route('/convert', methods=['POST'])
+def convert():
+    data = request.json
+    text = data['text']
+    
+    # write the text to a file
+    with open('output.txt', 'w') as f:
+        f.write(text)
 
+    return {'result': 'Speech to text conversion successful. Text saved to file.'}
+
+@app.route('/speech-to-text', methods=['POST'])
+def speech_to_text():
+    # Initialize recognizer class (for recognizing the speech)
+    r = sr.Recognizer()
+
+    # Get audio data from request
+    audio_data = request.data
+
+    # Convert audio data to audio source
+    with sr.AudioFile(audio_data) as source:
+        audio_text = r.record(source)
+
+    # Recognize speech using Google Speech Recognition API
+    try:
+        recognized_text = r.recognize_google(audio_text)
+    except:
+        recognized_text = "Sorry, I did not get that"
+
+    # Save recognized text to file
+    with open('recognized_text.txt', 'w') as f:
+        f.write(recognized_text)
+
+    return recognized_text
 
 
 #speech=get_data(r"D:\REC\Word to text\sample.docx")
@@ -189,9 +223,16 @@ def generate():
 def live():
     return render_template("live.html")
 
+@app.route("/record", methods=['GET','POST'])
+def record():
+    return render_template("record.html")
+
+
+
 @app.route("/home",methods=['GET','POST'])
 def home():
     return render_template("index.html")
+
 
 if __name__ == '__main__':
  

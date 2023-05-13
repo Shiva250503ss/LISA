@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Speech to Text</title>
+    <style>
+        body {
+            background-color: #F4F4F4;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        p {
+            color: #555;
+            font-size: 18px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            color: #FFF;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+            padding: 10px 20px;
+            transition: all 0.2s ease-in-out;
+			
+        }
+        
+        button:hover {
+            background-color: #3E8E41;
+        }
+        
+        button:disabled {
+            background-color: #999;
+            cursor: not-allowed;
+        }
+        
+        #startButton {
+            margin-right: 0;
+        }
+        
+        #output {
+            background-color: #FFF;
+            border-radius: 5px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            margin: 50px auto 0;
+            max-width: 600px;
+            padding: 20px;
+            text-align: center;
+            width: 90%;
+        }
+        
+        #output i {
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <h1>Speech to Text</h1>
+    <p>Click the button below and start speaking to see your speech converted to text in real time:</p>
+	<div style="transform: translateX(40%);">
+		<button id="startButton" onclick="startListening()">Start Listening</button>
+    	<button id="stopButton" onclick="stopListening()" disabled>Stop Recording</button>
+	</div>
+    
+    <div id="output"></div>
+
+    <script>
+        var recognition = new webkitSpeechRecognition();
+        recognition.continuous = true;
+        recognition.interimResults = true;
+
+        recognition.onstart = function(event) {
+            document.getElementById("startButton").disabled = true;
+            document.getElementById("stopButton").disabled = false;
+        };
+
+        recognition.onend = function(event) {
+            document.getElementById("startButton").disabled = false;
+            document.getElementById("stopButton").disabled = true;
+        };
+
+        recognition.onresult = function(event) {
+            var interimTranscript = '';
+            var finalTranscript = '';
+            for (var i = event.resultIndex; i < event.results.length; ++i) {
+                if (event.results[i].isFinal) {
+                    finalTranscript += event.results[i][0].transcript;
+                } else {
+                    interimTranscript += event.results[i][0].transcript;
+                }
+            }
+            document.getElementById("output").innerHTML = finalTranscript + "<i>" + interimTranscript + "</i>";
+            
+            // send the final transcript to the server
+            if (finalTranscript) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/save');
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        console.log('Text saved successfully');
+                    } else {
+                        console.error('Error saving text:',
+ xhr.statusText);
+			        }
+			    };
+			    xhr.send(JSON.stringify({text: finalTranscript}));
+			}
+		};
+
+		function startListening() {
+			recognition.start();
+		}
+
+		function stopListening() {
+			recognition.stop();
+		}
+	</script>
+</body>
+</html>
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Speech to Text</title>
+</head>
+<body>
+    <h1>Speech to Text</h1>
+    <form action="{{ url_for('speech_to_text') }}" method="post">
+        <label for="filename">File Name:</label>
+        <input type="text" name="filename" id="filename"><br><br>
+        <button type="submit">Start Recording</button>
+    </form>
+</body>
+</html> -->

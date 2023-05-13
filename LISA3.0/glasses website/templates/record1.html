@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Speech to Text</title>
+</head>
+<body>
+    <h1>Speech to Text</h1>
+    <form action="{{ url_for('speech_to_text') }}" method="post">
+        <label for="filename">File Name:</label>
+        <input type="text" name="filename" id="filename"><br><br>
+        <button type="submit">Start Recording</button>
+    </form>
+</body>
+</html>
