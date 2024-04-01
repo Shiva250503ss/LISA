@@ -182,8 +182,6 @@ def generate():
 
 
 
-
-
 #speech=get_data(r"D:\REC\Word to text\sample.docx")
 @app.route("/live", methods=['GET','POST'])
 def live():
